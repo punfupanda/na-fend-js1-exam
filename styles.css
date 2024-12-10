@@ -31,7 +31,7 @@ img {
 
 /* Dark mode button */
 #toggle {
-    font-size: 12px;
+    font-size: 1.05rem;
     background-color: orange;
     color: white;
     display: inline-block;
