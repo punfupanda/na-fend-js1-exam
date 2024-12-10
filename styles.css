@@ -15,6 +15,14 @@ h2 {
     font-size: 16px;
 }
 
+p {
+    font-size: 12px;
+}
+
+img {
+    
+}
+
 /* Dark mode */
 .dark-mode {
     background-color: darkslategray;
@@ -23,17 +31,16 @@ h2 {
 
 /* Dark mode button */
 #toggle {
-    font-size: 16px;
+    font-size: 12px;
     background-color: orange;
     color: white;
     display: inline-block;
-    padding: 10px 20px;
+    padding: 5px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s ease, transform 0.2s ease;
-
   }
   
   #toggle:hover {

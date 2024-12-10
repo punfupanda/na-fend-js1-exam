@@ -1,14 +1,14 @@
 // Button Toggle
   let toggle = document.getElementById("toggle");
-toggle.textContent = "Dark Mode";
+toggle.textContent = "Mörkt läge";
 
 function darkMode() {
     var element = document.body;
     element.classList.toggle("dark-mode");
-    if (toggle.textContent === "Dark Mode") {
-      toggle.textContent = "Light Mode";
+    if (toggle.textContent === "Mörkt läge") {
+      toggle.textContent = "Ljust läge";
     } else {
-      toggle.textContent = "Dark Mode";
+      toggle.textContent = "Mörkt läge";
     }
   }
 //
