@@ -18,14 +18,37 @@ h2 {
 p {
     font-size: 12px;
 }
-
+/* Banner Image */
 img {
-    
-}
+    display: block;
+    margin: 0 auto;
+    max-width: 350px;
+    height: auto;
+  }
+
+/* Quiz button */
+#quizStart {
+    font-size: 1.05rem;
+    background-color: #033758;
+    text-align: center;
+    color: white;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 0;
+    border:none;
+  }
+  
+  #quizStart:hover {
+    background-color: #021d2e;
+    transform: scale(1.1);
+  }
 
 /* Dark mode */
 .dark-mode {
-    background-color: darkslategray;
+    background-color: #021d2e;
     color: whitesmoke;
   }
 
@@ -33,26 +56,28 @@ img {
 #toggle {
     font-size: 1.05rem;
     background-color: orange;
+    text-align: center;
     color: white;
     display: inline-block;
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    text-align: center;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 0;
   }
   
   #toggle:hover {
     background-color: darkorange;
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
   
   body.dark-mode #toggle {
-    background-color: lightcoral;
+    background-color: darkorange;
     color: white;
   }
   
   body.dark-mode #toggle:hover {
-    background-color: coral
+    background-color: rgb(211, 117, 2);
+    color: white;
   }
