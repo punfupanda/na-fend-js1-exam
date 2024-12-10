@@ -1,0 +1,51 @@
+body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 2rem;
+    background-color: white;
+    color: black;
+    font-size: 1rem;
+    justify-self: center;
+}
+
+h1 {
+    font-size: 28px;    
+}   
+
+h2 {
+    font-size: 16px;
+}
+
+/* Dark mode */
+.dark-mode {
+    background-color: darkslategray;
+    color: whitesmoke;
+  }
+
+/* Dark mode button */
+#toggle {
+    font-size: 16px;
+    background-color: orange;
+    color: white;
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+  }
+  
+  #toggle:hover {
+    background-color: darkorange;
+    transform: scale(1.2);
+  }
+  
+  body.dark-mode #toggle {
+    background-color: lightcoral;
+    color: white;
+  }
+  
+  body.dark-mode #toggle:hover {
+    background-color: coral
+  }

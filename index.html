@@ -1,5 +1,4 @@
-<!-- Projekt - Ankademin Quiz
-
+<!--
 () Skapa en quiz-applikation åt Ankademin.
 () Användare ska kunna svara på frågor och få feedback på huruvida hen besvarat dessa rätt eller fel.
 () Applikationen ska fungera utan några större buggar. Du väljer själv vilka frågor som quizet ska bestå av.
@@ -9,18 +8,16 @@ Kravställning
 () Quizet innehåller 10-15 frågor.
 () Användaren ska kunna besvara samtliga frågor och sedan se sitt resultat efter avslutat quiz.
 () Skriv ut antal rätt som användaren fått. Använd även färg och text för att meddela användarens resultat utefter följande kriterier:
-
-
 < 50% - Underkänt (rött)
 50%-75% - Bra (gul/orange)
 > 75% - Riktigt bra jobbat (grönt)
 
-Betyg G
+G
 () Frågorna består av sant/falskt påståenden med två möjliga svarsalternativ: Sant eller Falskt.
 () Användaren ska utöver att besvara frågor för quizet, även kunna byta utseende på sidan mellan dark mode (dvs mörk bakgrundsfärg med ljus text) och light mode (ljus bakgrundsfärg med mörk text).
 () Du har gjort minst 10 commits till ditt Github-repository under projektets gång.
 
-Betyg VG
+VG
 () Alla G-krav är uppfyllda
 () Frågorna ska bestå utav en blandning av följande typer (minst 2 av varje typ)
 () Sant/falskt-påståenden - (Två svarsalternativ - Sant eller Falskt)
@@ -38,17 +35,20 @@ Bonus: Snygga till quizet med CSS så att den ser användarvänlig ut!-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ankademin Quiz</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="index.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Ankademin Quiz</h1>
-    <p>Ansök till Ankademin för att bli en certifierad ank-expert!<br>Vad vet du om ankor, egenetligen?
     <!-- IMG NO DUCKS GIVEN -->
-    </p>
-    <button id="button-toggle">Toggle Mode</button>
+    <img src="/img/no-ducks-given-badge-0afa8c.webp" id="ducks">    
+    
   </header>
-
   <main>
+    <h1>Ankademin Quiz</h1>
+    <h2>Ansök till Ankademin för att bli en certifierad ank-expert!
+    <p>Vad vet du om ankor, egentligen?</p>
+    </h2>
+    <button id="toggle" onclick="darkMode()"></button>
     <form id="form-quiz">
         <div id="container-question">
           
@@ -142,7 +142,7 @@ Bonus: Snygga till quizet med CSS så att den ser användarvänlig ut!-->
   
           <!-- Q9 -->
           <div class="question">
-            <p>9. Ankhanar kallas ibland för drakar i folkmun.</p>
+            <p>9. Ankhanar kallas ibland för drakar.</p>
             <label>
               <input type="radio" name="q9" value="true"> Sant
             </label>
@@ -173,6 +173,5 @@ Bonus: Snygga till quizet med CSS så att den ser användarvänlig ut!-->
   
 </main>
 
-  <script src="script.js"></script>
 </body>
 </html>
