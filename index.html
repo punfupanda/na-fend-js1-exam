@@ -1,35 +1,3 @@
-<!--
-() Skapa en quiz-applikation åt Ankademin.
-
-() Alla G-krav är uppfyllda
-() Frågorna ska bestå utav en blandning av följande typer (minst 2 av varje typ)
-    () Sant/falskt-påståenden - (Två svarsalternativ - Sant eller Falskt)
-    () Multiple choice - (Fyra svarsalternativ varav ett rätt svar)
-    () Checkbox-svar (4 checkboxar med svarsalternativ - 2 eller 3 rätta svar, övriga felaktig).
-
-() Användaren ska kunna besvara samtliga frågor och sedan se sitt resultat efter avslutat quiz.
-() Användare ska kunna svara på frågor och få feedback på huruvida hen besvarat dessa rätt eller fel.
-() Användaren ska kunna se exakt vilka frågor hen besvarat rätt och/eller felaktigt när resultatet visas.
-
-() Skriv ut antal rätt som användaren fått. Använd även färg och text för att meddela användarens resultat utefter följande kriterier:
-< 50% - Underkänt (rött)
-50%-75% - Bra (gul/orange)
-> 75% - Riktigt bra jobbat (grönt)
-
-() Applikationen ska fungera utan några större buggar. Du väljer själv vilka frågor som quizet ska bestå av.
-
-() Du har gjort minst 10 commits till ditt Github-repository under projektets gång.
-
-() Tekniskt krav: Koden följer “DRY”-principen (Dont repeat yourself), undviker större upprepningar av kod i logiken.
-–––––– 
-(x) Du ska även ha ditt projekt på Github och pusha upp kod kontinuerligt under projektets gång.
-(x) Quizet innehåller 10-15 frågor.
-(x) Frågorna består av sant/falskt påståenden med två möjliga svarsalternativ: Sant eller Falskt.
-(x) Användaren ska utöver att besvara frågor för quizet, även kunna byta utseende på sidan mellan dark mode (dvs mörk bakgrundsfärg med ljus text) och light mode (ljus bakgrundsfärg med mörk text).
-
-Bonus: Snygga till quizet med CSS så att den ser användarvänlig ut!
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,140 +11,45 @@ Bonus: Snygga till quizet med CSS så att den ser användarvänlig ut!
 <body>
 
   <header>
-    <!-- IMG NO DUCKS GIVEN -->
+    <!-- IMG: NO DUCKS GIVEN -->
     <div id="duck"><img src="/img/no-ducks-given-badge-0afa8c.webp" id="ducks">    
         </div>
+    <!-- DARK MODE BUTTON -->
     <div id="toggleButton"><button id="toggle" onclick="darkMode()"></button>
         </div> 
     </header>
 
   <main>
     <h1>Antagningsprov till Ankademin</h1>
-    <h2>Ansök till Ankademin för att bli en certifierad ank-expert!
-    <p>Vad vet du om ankor, egentligen?</p>
+    <p>Ansök till Ankademin för att bli en certifierad ank-expert!<br>Vad vet du om ankor, egentligen?</p>
     </h2>
     <div id="quizStartButton">
         <button id="quizStart" onclick="startQuiz()">Starta quiz</button>
       </div>
-    <form id="form-quiz">
-        <div id="container-question">
-          
-            <!-- Q1 -->
-          <div class="question">
-            <p>1. Ankor kan flyga långa sträckor</p>
-            <label>
-              <input type="radio" name="q1" value="true"> Sant
-            </label>
-            <label>
-              <input type="radio" name="q1" value="false"> Falskt
-            </label>
+      
+    <div id="quizGame" class="quiz-game">
+        <div>
+          <h2 id="quizTextHeading"></h2>
+          <p id="quizText"></p>
+        </div>
+        <div id="quizAnswerSelection">
+          <input type="checkbox" id="answer1" name="answer1" value="A - " />
+          <label id="questionAnswerSelection1" for="answer1"></label><br />
+          <input type="checkbox" id="answer2" name="answer2" value="B - " />
+          <label id="questionAnswerSelection2" for="answer2"></label><br />
+          <input type="checkbox" id="answer3" name="answer3" value="C - " />
+          <label id="questionAnswerSelection3" for="answer3"></label><br />
+          <input type="checkbox" id="answer4" name="answer4" value="D - " />
+          <label id="questionAnswerSelection4" for="answer4"></label><!--<br /><br />-->
+        </div>
+        <div class="quiz-buttons">
+          <div id="quizNextButton">
+            <button onclick="nextQuestion()">Nästa</button>
           </div>
-  
-          <!-- Q2 -->
-          <div class="question">
-            <p>2. Ankor kan andas under vatten.</p>
-            <label>
-              <input type="radio" name="q2" value="true"> Sant
-            </label>
-            <label>
-              <input type="radio" name="q2" value="false"> Falskt
-            </label>
+          <div id="quizEndButton">
+            <button onclick="endQuiz()">Avsluta</button>
           </div>
-  
-          <!-- Q3 -->
-          <div class="question">
-            <p>3. Alla ankor kvackar.</p>
-            <label>
-              <input type="radio" name="q3" value="true"> Sant
-            </label>
-            <label>
-              <input type="radio" name="q3" value="false"> Falskt
-            </label>
-          </div>
-  
-          <!-- Q4 -->
-          <div class="question">
-            <p>4. Alla ankor är vegetarianer.</p>
-            <label>
-              <input type="radio" name="q4" value="true"> Sant
-            </label>
-            <label>
-              <input type="radio" name="q4" value="false"> Falskt
-            </label>
-          </div>
-  
-          <!-- Q5 -->
-          <div class="question">
-            <p>5. Ankor är däggdjur.</p>
-            <label>
-              <input type="radio" name="q5" value="true"> Sant
-            </label>
-            <label>
-              <input type="radio" name="q5" value="false"> Falskt
-            </label>
-          </div>
-  
-          <!-- Q6 -->
-          <div class="question">
-            <p>6. Ankor har vattentäta fjädrar.</p>
-            <label>
-              <input type="radio" name="q6" value="true"> Sant
-            </label>
-            <label>
-              <input type="radio" name="q6" value="false"> Falskt
-            </label>
-          </div>
-  
-          <!-- Q7 -->
-          <div class="question">
-            <p>7. Ankor är färgblinda.</p>
-            <label>
-              <input type="radio" name="q7" value="true"> Sant
-            </label>
-            <label>
-              <input type="radio" name="q7" value="false"> Falskt
-            </label>
-          </div>
-  
-          <!-- Q8 -->
-          <div class="question">
-            <p>8. Bebisankor kallas för Ann-Katrin på rikssvenska.</p>
-            <label>
-              <input type="radio" name="q8" value="true"> Sant
-            </label>
-            <label>
-              <input type="radio" name="q8" value="false"> Falskt
-            </label>
-          </div>
-  
-          <!-- Q9 -->
-          <div class="question">
-            <p>9. Ankhanar kallas ibland för drakar.</p>
-            <label>
-              <input type="radio" name="q9" value="true"> Sant
-            </label>
-            <label>
-              <input type="radio" name="q9" value="false"> Falskt
-            </label>
-          </div>
-  
-          <!-- Q10 -->
-          <div class="question">
-            <p>10. Ankor flyger söderut under vintertider.</p>
-            <label>
-              <input type="radio" name="q10" value="true"> Sant
-            </label>
-            <label>
-              <input type="radio" name="q10" value="false"> Falskt
-            </label>
-          </div>
-  
-  
-        <button type="submit">Skicka</button>
-      </form>
-  
-      <div id="result-container" hidden>
-        <p id="result-text"></p>
+        </div>
       </div>
     </main>
   
