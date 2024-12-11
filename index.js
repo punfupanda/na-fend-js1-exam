@@ -35,7 +35,7 @@ let playerAnswerPoint = [];
 // QUESTIONS //
 const quizQuestions = [
   {
-    questionText: "Vilken av följande egenskaper stämmer för ankor?",
+    questionText: "Vilken/vilka av följande egenskaper stämmer för ankor?",
     questionAnswer: [
         "De kan flyga långa sträckor.", 
         "De kan andas under vatten.", 
@@ -43,7 +43,7 @@ const quizQuestions = [
         "Deras fjädrar är vattentäta."],
     questionSolution: [true, false, false, true],
     questionSolutionText: ["A", "D"],
-    questionPoints: 1,
+    questionPoints: 2,
   },
   {
     questionText: "Vad kallas en ankhane för?",
@@ -51,13 +51,13 @@ const quizQuestions = [
         "Tupp", 
         "Anko", 
         "Drake", 
-        "And"],
+        "Ankara"],
     questionSolution: [false, false, true, false],
     questionSolutionText: ["C"],
     questionPoints: 1,
   },
   {
-    questionText: "Vilken av följande mat äter ankor i naturen?",
+    questionText: "Vilken/vilka av följande äter ankor i naturen?",
     questionAnswer: [
         "Alger", 
         "Choklad", 
@@ -65,18 +65,18 @@ const quizQuestions = [
         "Småfisk"],
     questionSolution: [true, false, true, true],
     questionSolutionText: ["A", "C", "D"],
-    questionPoints: 1,
+    questionPoints: 3,
   },
   {
     questionText: "Vilket/vilka påståenden stämmer om ankors flygförmåga?",
     questionAnswer: [
-        "De kan flyga upp till 100 km/h.", 
-        "De kan flyga över kontinenter.", 
+        "De kan flyga över 100 km/h.", 
+        "De kan flyga tvärs över kontinenter.", 
         "De kan inte flyga alls.", 
         "De flyger bara under vintern."],
     questionSolution: [true, true, false, false],
     questionSolutionText: ["A", "B"],
-    questionPoints: 1,
+    questionPoints: 2,
   },
   {
     questionText: "Vad är sant om ankors kommunikation?",
@@ -84,15 +84,15 @@ const quizQuestions = [
       "Alla ankor kvackar.",
       "De kan kommunicera med kroppsspråk.",
       "De använder kvackningar för att varna andra ankor.",
-      "Ankor är stumma",
+      "Ankor är stumma.",
     ],
     questionSolution: [false, true, true, false],
     questionSolutionText: ["B", "C"],
-    questionPoints: 1,
+    questionPoints: 2,
   },
   {
     questionText:
-      "Vilka av följande är naturliga fiender för ankor?",
+      "Vilka/vilka av följande är naturliga fiender för ankor?",
     questionAnswer: [
       "Rävar",
       "Hajar",
@@ -101,7 +101,7 @@ const quizQuestions = [
     ],
     questionSolution: [true, false, true, false],
     questionSolutionText: ["A", "C"],
-    questionPoints: 1,
+    questionPoints: 2,
   },
   {
     questionText: "Vilken/vilka egenskaper utmärker hos ankor?",
@@ -113,19 +113,19 @@ const quizQuestions = [
     ],
     questionSolution: [true, false, true, true],
     questionSolutionText: ["A", "C", "D"],
-    questionPoints: 1,
+    questionPoints: 3,
   },
   {
-    questionText: "Vilken av följande ankraser finns verkligen?",
+    questionText: "Vilken av följande är ankraser?",
     questionAnswer: [
       "Indian Runner",
       "Galaxy Duck",
       "Peking Duck",
-      "Kalle Anka",
+      "Donald Duck",
     ],
     questionSolution: [true, false, true, false],
     questionSolutionText: ["A", "C"],
-    questionPoints: 1,
+    questionPoints: 2,
   },
   {
     questionText: "Vad är sant om ankors migration?",
@@ -137,10 +137,10 @@ const quizQuestions = [
     ],
     questionSolution: [true, true, false, true],
     questionSolutionText: ["A", "B", "D"],
-    questionPoints: 1,
+    questionPoints: 3,
   },
   {
-    questionText: "Vad är en typisk livsmiljö för ankor?",
+    questionText: "Vilken/vilka livsmiljöer lever ankor i?",
     questionAnswer: [
       "Sjöar",
       "Öken",
@@ -149,10 +149,12 @@ const quizQuestions = [
     ],
     questionSolution: [true, false, true, false],
     questionSolutionText: ["A", "C"],
-    questionPoints: 1,
+    questionPoints: 2,
   },
 ];
-//
+function calculateTotalPoints() {
+    return quizQuestions.reduce((sum, question) => sum + question.questionPoints, 0);
+}
 function startQuiz() {
     playerAnswer = [];
     playerAnswerText = [];
@@ -160,7 +162,7 @@ function startQuiz() {
     quizStartButton.style.display = "none";
     quizNextButton.style.display = "inline-block";
     quizEndButton.style.display = "inline-block";
-    quizTextHeading.style.color = "black";
+    document.getElementById("quizIntro").style.display = "none";
   
     quizTextHeading.textContent = "Fråga " + (playerAnswer.length + 1);
     quizText.textContent = quizQuestions[playerAnswer.length].questionText;
@@ -177,6 +179,154 @@ function startQuiz() {
     }
   }
   
+  function nextQuestion() {
+    let playerCheckBoxAnswer = [];
+    for (
+      let i = 0;
+      i < quizQuestions[playerAnswer.length].questionAnswer.length;
+      i++
+    ) {
+      playerCheckBoxAnswer[i] = checkBoxSelection[i].checked;
+    }
+    playerAnswer.push(playerCheckBoxAnswer);
+  
+    document.getElementById("answer1").checked = false;
+    document.getElementById("answer2").checked = false;
+    document.getElementById("answer3").checked = false;
+    document.getElementById("answer4").checked = false;
+  
+    for (let i = 0; i < 4; i++) {
+      checkBoxSelection[i].style.display = "none";
+      questionAnswerSelection[i].textContent = "";
+    }
+  
+    if (playerAnswer.length >= quizQuestions.length) {
+        endQuiz();
+      }
+    else {
+      quizTextHeading.textContent = "Fråga " + (playerAnswer.length + 1);
+      quizText.textContent = quizQuestions[playerAnswer.length].questionText;
+  
+      for (
+        let i = 0;
+        i < quizQuestions[playerAnswer.length].questionAnswer.length;
+        i++
+      ) {
+        checkBoxSelection[i].style.display = "inline-block";
+        questionAnswerSelection[i].textContent =
+          checkBoxSelection[i].value +
+          quizQuestions[playerAnswer.length].questionAnswer[i];
+      }
+    }
+  }
+  
+  function endQuiz() {
+    const maxPoints = calculateTotalPoints();
+    let totQuizPoint = 0;
+    let playerTotPoint = 0;
+    let playerPoints = [];
+    quizStartButton.style.display = "none";
+    document.getElementById("answer1").checked = false;
+    document.getElementById("answer2").checked = false;
+    document.getElementById("answer3").checked = false;
+    document.getElementById("answer4").checked = false;
+  
+    for (let i = 0; i < 4; i++) {
+      checkBoxSelection[i].style.display = "none";
+      questionAnswerSelection[i].textContent = "";
+    }
+  
+    quizNextButton.style.display = "none";
+    quizEndButton.style.display = "none";
+    quizTextHeading.textContent = "";
+    quizText.textContent = "";
+  
+    let checkSolution = 0;
+    let quizQuestionPoint = 0;
+    for (let i = 0; i < quizQuestions.length; i++) {
+      totQuizPoint += quizQuestions[i].questionPoints;
+  
+      if (i < playerAnswer.length) {
+        checkSolution = 0;
+        quizQuestionPoint = 0;
+        let playerAnswerTextTemp = "";
+  
+        for (let x = 0; x < quizQuestions[i].questionSolution.length; x++) {
+          if (
+            quizQuestions[i].questionSolution[x] !== playerAnswer[i][x] &&
+            playerAnswer[i][x] === true
+          ) {
+            checkSolution++;
+          }
+          if (
+            quizQuestions[i].questionSolution[x] === playerAnswer[i][x] &&
+            playerAnswer[i][x] === true
+          ) {
+            quizQuestionPoint++;
+          }
+          if (playerAnswer[i][x] === true) {
+            if (playerAnswerTextTemp === "") {
+              playerAnswerTextTemp += quizQuestionAnswerSelection[x];
+            } else {
+              playerAnswerTextTemp += "," + quizQuestionAnswerSelection[x];
+            }
+          } else {
+            playerAnswerTextTemp === "";
+          }
+        }
+  
+        if (playerAnswerTextTemp === "") {
+          playerAnswerText[i] = "Inget svar";
+        } else {
+          playerAnswerText[i] = playerAnswerTextTemp;
+        }
+  
+        if (checkSolution === 0 && quizQuestionPoint > 0) {
+          playerTotPoint += quizQuestionPoint;
+          playerAnswerPoint[i] = quizQuestionPoint;
+          if (quizQuestionPoint < quizQuestions[i].questionPoints) {
+            playerPoints[i] = "Delvis rätt";
+          } else {
+            playerPoints[i] = "Alla rätt";
+          }
+        } else {
+          playerPoints[i] = "Fel";
+          playerAnswerPoint[i] = 0;
+        }
+      } else {
+        playerPoints[i] = "Fel";
+        playerAnswerPoint[i] = 0;
+      }
+    }
+    if (playerTotPoint / totQuizPoint > 0.75) {
+        quizTextHeading.style.color = "green";
+    }
+    else if (playerTotPoint / totQuizPoint < 0.5) {
+        quizTextHeading.style.color = "red";  
+    } else {
+        quizTextHeading.style.color = "yellow";
+    }
+  
+    quizTextHeading.innerText =
+      "Du har fått " + playerTotPoint + " poäng av " + totQuizPoint;
+  
+    for (let i = 0; i < quizQuestions.length; i++) {
+      const div = document.createElement("div");
+      div.innerText =
+        "Fråga " +
+        (i + 1) +
+        ": " +
+        playerPoints[i] +
+        ". " +
+        playerAnswerPoint[i] +
+        " poäng ( Ditt svar: " +
+        playerAnswerText[i] +
+        " / rätt svar: " +
+        quizQuestions[i].questionSolutionText +
+        ")";
+      quizText.append(div);
+    }
+  }
 
 // Button Toggle
   let toggle = document.getElementById("toggle");

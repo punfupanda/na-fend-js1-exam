@@ -3,7 +3,7 @@ body {
     padding: 2rem;
     background-color: white;
     color: black;
-    font-size: 1rem;
+    font-size: 18px;
     justify-self: center;
 }
 
@@ -16,7 +16,17 @@ h2 {
 }
 
 p {
-    font-size: 12px;
+    font-family: inherit
+    font-size: inherit;
+    color: inherit;
+}
+label {
+    label {
+        font-family: inherit;
+        font-size: 14px;
+        color: inherit;
+        line-height: 1.5;
+    }
 }
 /* Banner Image */
 img {
@@ -45,13 +55,55 @@ img {
     background-color: #021d2e;
     transform: scale(1.1);
   }
+#quizNext {
+    font-size: 1.05rem;
+    background-color: #033758;
+    text-align: center;
+    color: white;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+}
 
+#quizNext:hover {
+    background-color: #021d2e;
+    transform: scale(1.1);
+}
+#quizEnd {
+    font-size: 1.05rem;
+    background-color: #a83232; /* Red background */
+    text-align: center;
+    color: white;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    margin-left: 10px;
+}
+
+#quizEnd:hover {
+    background-color: #821c1c; /* Darker red on hover */
+    transform: scale(1.1);
+}
+#quizAnswerSelection {
+    margin-bottom: 20px;
+}
 /* Dark mode */
 .dark-mode {
     background-color: #021d2e;
     color: whitesmoke;
   }
-
+  #quizTextHeading {
+    color: black;
+  }
+  body.dark-mode #quizTextHeading {
+    color: whitesmoke;
+  }
 /* Dark mode button */
 #toggle {
     font-size: 1.05rem;
@@ -63,20 +115,17 @@ img {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     margin-left: 0;
   }
-  
   #toggle:hover {
     background-color: darkorange;
     transform: scale(1.1);
   }
-  
   body.dark-mode #toggle {
     background-color: darkorange;
     color: white;
   }
-  
   body.dark-mode #toggle:hover {
     background-color: rgb(211, 117, 2);
     color: white;

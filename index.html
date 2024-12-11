@@ -11,49 +11,45 @@
 <body>
 
   <header>
-    <!-- IMG: NO DUCKS GIVEN -->
     <div id="duck"><img src="/img/no-ducks-given-badge-0afa8c.webp" id="ducks">    
         </div>
-    <!-- DARK MODE BUTTON -->
     <div id="toggleButton"><button id="toggle" onclick="darkMode()"></button>
         </div> 
     </header>
 
   <main>
     <h1>Antagningsprov till Ankademin</h1>
-    <p>Ansök till Ankademin för att bli en certifierad ank-expert!<br>Vad vet du om ankor, egentligen?</p>
+    <p id="quizIntro">Ansök till Ankademin för att bli en certifierad ank-expert!<br>Vad vet du om ankor, egentligen?</p>
     </h2>
     <div id="quizStartButton">
         <button id="quizStart" onclick="startQuiz()">Starta quiz</button>
       </div>
-      
     <div id="quizGame" class="quiz-game">
         <div>
           <h2 id="quizTextHeading"></h2>
           <p id="quizText"></p>
         </div>
         <div id="quizAnswerSelection">
-          <input type="checkbox" id="answer1" name="answer1" value="A - " />
+          <input type="checkbox" id="answer1" name="answer1" value="A: " />
           <label id="questionAnswerSelection1" for="answer1"></label><br />
-          <input type="checkbox" id="answer2" name="answer2" value="B - " />
+          <input type="checkbox" id="answer2" name="answer2" value="B: " />
           <label id="questionAnswerSelection2" for="answer2"></label><br />
-          <input type="checkbox" id="answer3" name="answer3" value="C - " />
+          <input type="checkbox" id="answer3" name="answer3" value="C: " />
           <label id="questionAnswerSelection3" for="answer3"></label><br />
-          <input type="checkbox" id="answer4" name="answer4" value="D - " />
-          <label id="questionAnswerSelection4" for="answer4"></label><!--<br /><br />-->
+          <input type="checkbox" id="answer4" name="answer4" value="D: " />
+          <label id="questionAnswerSelection4" for="answer4"></label>
         </div>
         <div class="quiz-buttons">
           <div id="quizNextButton">
-            <button onclick="nextQuestion()">Nästa</button>
+            <button id="quizNext" onclick="nextQuestion()">Nästa</button>
           </div>
           <div id="quizEndButton">
-            <button onclick="endQuiz()">Avsluta</button>
+            <button id="quizEnd" onclick="endQuiz()">Avsluta</button>
           </div>
         </div>
       </div>
     </main>
   
 </main>
-
 </body>
 </html>
