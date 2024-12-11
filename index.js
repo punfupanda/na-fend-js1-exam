@@ -116,7 +116,7 @@ const quizQuestions = [
     questionPoints: 3,
   },
   {
-    questionText: "Vilken av följande är ankraser?",
+    questionText: "Vilken/vilka av följande är ankraser?",
     questionAnswer: [
       "Indian Runner",
       "Galaxy Duck",
@@ -219,116 +219,79 @@ function startQuiz() {
       }
     }
   }
-  
+  // RESULTAT //
   function endQuiz() {
     const maxPoints = calculateTotalPoints();
     let totQuizPoint = 0;
     let playerTotPoint = 0;
-    let playerPoints = [];
+    
     quizStartButton.style.display = "none";
     document.getElementById("answer1").checked = false;
     document.getElementById("answer2").checked = false;
     document.getElementById("answer3").checked = false;
     document.getElementById("answer4").checked = false;
-  
+
     for (let i = 0; i < 4; i++) {
-      checkBoxSelection[i].style.display = "none";
-      questionAnswerSelection[i].textContent = "";
+        checkBoxSelection[i].style.display = "none";
+        questionAnswerSelection[i].textContent = "";
     }
-  
     quizNextButton.style.display = "none";
     quizEndButton.style.display = "none";
     quizTextHeading.textContent = "";
     quizText.textContent = "";
-  
-    let checkSolution = 0;
-    let quizQuestionPoint = 0;
+    
     for (let i = 0; i < quizQuestions.length; i++) {
-      totQuizPoint += quizQuestions[i].questionPoints;
-  
-      if (i < playerAnswer.length) {
-        checkSolution = 0;
-        quizQuestionPoint = 0;
-        let playerAnswerTextTemp = "";
-  
-        for (let x = 0; x < quizQuestions[i].questionSolution.length; x++) {
-          if (
-            quizQuestions[i].questionSolution[x] !== playerAnswer[i][x] &&
-            playerAnswer[i][x] === true
-          ) {
-            checkSolution++;
-          }
-          if (
-            quizQuestions[i].questionSolution[x] === playerAnswer[i][x] &&
-            playerAnswer[i][x] === true
-          ) {
-            quizQuestionPoint++;
-          }
-          if (playerAnswer[i][x] === true) {
-            if (playerAnswerTextTemp === "") {
-              playerAnswerTextTemp += quizQuestionAnswerSelection[x];
+        totQuizPoint += quizQuestions[i].questionPoints;
+        let questionPointsEarned = 0;
+        const div = document.createElement("div");
+        let resultText = `<br><strong>${i + 1}. ${quizQuestions[i].questionText}</strong><br><br>`;
+
+        quizQuestions[i].questionAnswer.forEach((answer, index) => {
+            const isCorrect = quizQuestions[i].questionSolution[index];
+            const userChose = playerAnswer[i] && playerAnswer[i][index];
+            let color = ""; 
+
+            if (isCorrect && userChose) {
+                color = "darkgreen"; 
+                questionPointsEarned++;
+            } else if (isCorrect) {
+                color = "green"; 
+            } else if (userChose) {
+                color = "crimson"; 
             } else {
-              playerAnswerTextTemp += "," + quizQuestionAnswerSelection[x];
+                color = "red"; 
             }
-          } else {
-            playerAnswerTextTemp === "";
-          }
-        }
-  
-        if (playerAnswerTextTemp === "") {
-          playerAnswerText[i] = "Inget svar";
-        } else {
-          playerAnswerText[i] = playerAnswerTextTemp;
-        }
-  
-        if (checkSolution === 0 && quizQuestionPoint > 0) {
-          playerTotPoint += quizQuestionPoint;
-          playerAnswerPoint[i] = quizQuestionPoint;
-          if (quizQuestionPoint < quizQuestions[i].questionPoints) {
-            playerPoints[i] = "Delvis rätt";
-          } else {
-            playerPoints[i] = "Alla rätt";
-          }
-        } else {
-          playerPoints[i] = "Fel";
-          playerAnswerPoint[i] = 0;
-        }
-      } else {
-        playerPoints[i] = "Fel";
-        playerAnswerPoint[i] = 0;
-      }
+
+            resultText += `<span style="color: ${color};">${quizQuestionAnswerSelection[index]}: ${answer}</span> `;
+            if (isCorrect && userChose) {
+                resultText += "✔️ (Rätt och valt)<br>";
+            } else if (isCorrect) {
+                resultText += "✔️ (Rätt)<br>";
+            } else if (userChose) {
+                resultText += "✖️ (Felaktigt valt)<br>";
+            } else {
+                resultText += "✖️ Fel<br>";
+            }
+        });
+
+        playerTotPoint += questionPointsEarned;
+        resultText += `<br><strong>Poäng:</strong> ${questionPointsEarned} av ${quizQuestions[i].questionPoints}<br><br><br>`;
+        div.innerHTML = resultText; 
+        quizText.append(div);
     }
+
+    quizTextHeading.innerText = `Du fick ${playerTotPoint} poäng av ${totQuizPoint}`;
+    
     if (playerTotPoint / totQuizPoint > 0.75) {
         quizTextHeading.style.color = "green";
-    }
-    else if (playerTotPoint / totQuizPoint < 0.5) {
-        quizTextHeading.style.color = "red";  
+    } else if (playerTotPoint / totQuizPoint < 0.5) {
+        quizTextHeading.style.color = "red";
     } else {
-        quizTextHeading.style.color = "yellow";
+        quizTextHeading.style.color = "orange";
     }
-  
-    quizTextHeading.innerText =
-      "Du har fått " + playerTotPoint + " poäng av " + totQuizPoint;
-  
-    for (let i = 0; i < quizQuestions.length; i++) {
-      const div = document.createElement("div");
-      div.innerText =
-        "Fråga " +
-        (i + 1) +
-        ": " +
-        playerPoints[i] +
-        ". " +
-        playerAnswerPoint[i] +
-        " poäng ( Ditt svar: " +
-        playerAnswerText[i] +
-        " / rätt svar: " +
-        quizQuestions[i].questionSolutionText +
-        ")";
-      quizText.append(div);
-    }
-  }
+}
 
-// Button Toggle
+// Button Toggle //
   let toggle = document.getElementById("toggle");
 toggle.textContent = "Mörkt läge";
 
