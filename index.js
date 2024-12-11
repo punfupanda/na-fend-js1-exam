@@ -111,9 +111,9 @@ const quizQuestions = [
       "Deras vingar är för små för att flyga.",
       "Deras fötter har simhudar.",
     ],
-    questionSolution: [true, false, true, true],
-    questionSolutionText: ["A", "C", "D"],
-    questionPoints: 3,
+    questionSolution: [true, false, false, true],
+    questionSolutionText: ["A", "D"],
+    questionPoints: 2,
   },
   {
     questionText: "Vilken/vilka av följande är ankraser?",
@@ -270,7 +270,7 @@ function startQuiz() {
             } else if (userChose) {
                 resultText += "✖️ (Felaktigt valt)<br>";
             } else {
-                resultText += "✖️ Fel<br>";
+                resultText += "✖️ (Fel)<br>";
             }
         });
 
