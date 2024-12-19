@@ -259,7 +259,7 @@ function startQuiz() {
             } else if (userChose) {
                 color = "crimson"; 
             } else {
-                color = "red"; 
+                color = "lightgray"; 
             }
 
             resultText += `<span style="color: ${color};">${quizQuestionAnswerSelection[index]}: ${answer}</span> `;
